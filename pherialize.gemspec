@@ -1,6 +1,8 @@
+require 'lib/pherialize'
+
 Gem::Specification.new do |spec|
   spec.name = "pherialize"
-  spec.version = "1.0.0"
+  spec.version = Pherialize::VERSION
   spec.summary = "A Ruby parser/writer for the PHP serialization format"
   spec.require_path = 'lib/'
   spec.files = Dir['lib/*.rb']
