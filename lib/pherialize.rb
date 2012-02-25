@@ -1,4 +1,4 @@
-# Copyright (c) 2010 Jamie Rumbelow <jamie@jamierumbelow.net>
+# Copyright (c) 2012 Jamie Rumbelow <jamie@jamierumbelow.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,4 +27,8 @@ require 'pherialize/helpers'
 
 module Pherialize
   VERSION = '1.0.0dev'
+  
+  def self.parse(php_string)
+    Parser.parse Lexer.new(php_string)
+  end
 end

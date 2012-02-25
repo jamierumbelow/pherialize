@@ -9,13 +9,13 @@ Basic Usage
 Load the gem and try parsing a simple string of serialized PHP:
 
 	require 'pherialize'
-	drinks = Pherialize::Parser.parse('a:3:{s:4:"Beer";s:6:"Whisky";s:4:"Wine"}')
+	drinks = Pherialize.parse('a:3:{s:4:"Beer";s:6:"Whisky";s:4:"Wine"}')
 
-The `Pherialize::Parser` class has a few class methods to parse various things.
+The `Pherialize` module has a few methods to parse various things.
 
-	drinks = Pherialize::Parser.parse('a:3:{s:4:"Beer";s:6:"Whisky";s:4:"Wine"}')
-	drinks = Pherialize::Parser.parse_string('a:3:{s:4:"Beer";s:6:"Whisky";s:4:"Wine"}')
-	drinks = Pherialize::Parser.parse_file('/path/to/file.txt')
+	drinks = Pherialize.parse('a:3:{s:4:"Beer";s:6:"Whisky";s:4:"Wine"}')
+	drinks = Pherialize.parse_string('a:3:{s:4:"Beer";s:6:"Whisky";s:4:"Wine"}')
+	drinks = Pherialize.parse_file('/path/to/file.txt')
 
 You can also serialise Ruby objects into the PHP format with `Pherialize::Writer`
 

@@ -1,11 +1,19 @@
 module Pherialize
   
-  # Pherialize::Parser takes in a series of tokens and
-  # loops through them, building up the object represented
+  # Pherialize::Parser takes in a Lexer object and
+  # loops through its tokens, building up the object represented
   class Parser
-    def initialize(tokens)
-      @tokens = tokens
+    def self.parse(lexer)
+      Parser.new(lexer).parse
+    end
+    
+    def initialize(lexer)
+      @tokens = lexer.tokens
       @position = 0
+    end
+    
+    def parse
+      
     end
     
     # -----------

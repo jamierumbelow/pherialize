@@ -2,12 +2,12 @@ module Pherialize
   
   # Pherialize::Lexer takes an input string of serialized PHP
   # and replaces it with a series of tokens that Pherialize::Parser
-  # can understand. It's usage is simple:
+  # can understand. Just pass a string of serialized PHP to the constructor:
   # 
   #   Pherialize::Lexer.new('s:4:"Cake"')
   class Lexer
-    # A big long list of constants for tokens. Each token represents
-  	# something meaningful in the code.
+    # A list of constants for tokens. Each token represents
+    # something meaningful in the code.
     TOKEN_TYPE_IDENITFIER = 1
     TOKEN_STRING = 2
     TOKEN_NUMBER = 3
@@ -27,7 +27,7 @@ module Pherialize
     STATE_SKIP_TO_VALLENGTH = 11
     STATE_SKIP_TO_VALUE = 12
     
-    # A few other bits
+    # A few other bits, including the list of type identifiers.
     TYPE_IDENITIFIERS = 'abdinors'
     attr_accessor :tokens
     
@@ -41,8 +41,6 @@ module Pherialize
       
       # Loop through the string, character by character, building up tokens
       @source.each_char do |char|
-        puts "#{char} = #{state}"
-        
         case state
           when STATE_DEFAULT
             state = type_identifier_lookup char, state
