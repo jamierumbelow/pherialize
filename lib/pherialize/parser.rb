@@ -15,12 +15,15 @@ module Pherialize
     
     def parse
       while true
-        if current.token == 'a'
+        if current_token.token == 'a'
           @object = []
+        elsif current_token.token == 'i'
+          @object = next_token.token.to_i
+          @position += 1
         end
 
         @position += 1
-        break unless current
+        break unless current_token
       end
 
       @object
@@ -30,15 +33,15 @@ module Pherialize
     #   Token retrieval
     # -----------
     
-    def current
+    def current_token
       @tokens[@position]
     end
     
-    def next(offset = 0)
+    def next_token(offset = 0)
       @tokens[@position + 1 + offset]
     end
     
-    def previous(offset = 0)
+    def previous_token(offset = 0)
       @tokens[@position - 1 - offset]
     end
     
