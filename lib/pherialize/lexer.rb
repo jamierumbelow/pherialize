@@ -43,11 +43,14 @@ module Pherialize
       # Loop through the string, character by character, building up tokens
       @source.each_char do |char|
         case state
+
+          # We're in the default state, which is the initial state of the
+          # lexer. Look for a type identifier.
           when STATE_DEFAULT
             state = type_identifier_lookup char, state
             
+          # We know what type we're defining, what's the value?
           when STATE_VALUE
-            state = type_identifier_lookup char, state
             state = value_lookup char
             
           when STATE_CLASSLENGTH
@@ -102,6 +105,16 @@ module Pherialize
             end
         end
       end
+
+      # Finally, we need to check that we don't have an
+      # 'open' token. Serialized PHP might end without a comma,
+      # in which case we'll lose the last token in the list.
+      #
+      # Which would be a TRAGEDY.
+      unless @token.empty?
+        @tokens << Token.new(state_to_token(state), @token)
+        @token = ""
+      end
     end
     
     def type_identifier_lookup(char, state)
@@ -135,6 +148,15 @@ module Pherialize
         STATE_NUMBER
       elsif char == '{'
         STATE_DEFAULT
+      end
+    end
+
+    def state_to_token(state)
+      case state
+        when STATE_NUMBER
+          TOKEN_NUMBER
+        when STATE_STRING
+          TOKEN_STRING
       end
     end
   end
