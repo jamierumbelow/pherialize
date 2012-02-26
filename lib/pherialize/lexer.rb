@@ -1,18 +1,19 @@
 module Pherialize
-  
+  # A list of constants for tokens. Each token represents
+  # something meaningful in the code. I'm keeping these at
+  # a module level so I don't have to write Lexer::TOKEN_BLAH
+  # in Pherialize::Parser
+  TOKEN_TYPE_IDENITFIER = 1
+  TOKEN_STRING = 2
+  TOKEN_NUMBER = 3
+  TOKEN_END_OBJECT = 4
+
   # Pherialize::Lexer takes an input string of serialized PHP
   # and replaces it with a series of tokens that Pherialize::Parser
   # can understand. Just pass a string of serialized PHP to the constructor:
   # 
   #   Pherialize::Lexer.new('s:4:"Cake"')
   class Lexer
-    # A list of constants for tokens. Each token represents
-    # something meaningful in the code.
-    TOKEN_TYPE_IDENITFIER = 1
-    TOKEN_STRING = 2
-    TOKEN_NUMBER = 3
-    TOKEN_END_OBJECT = 4
-    
     # Constants used to keep track of the internal state of the lexer
     STATE_DEFAULT = 1
     STATE_VALLENGTH = 2

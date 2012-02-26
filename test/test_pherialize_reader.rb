@@ -7,14 +7,14 @@ require 'pherialize'
 
 class PherializeTest < MiniTest::Unit::TestCase
   TESTS = {
-    'a:0:{}' => [ ]
+    'a:0:{}' => [ ], # test an empty array
   }
   
   i = 1
   
   TESTS.each do |php, obj|
     define_method "test_#{i}" do
-      assert_equal Pherialize.parse(php), obj
+      assert_equal obj, Pherialize.parse(php)
     end
   end
 end

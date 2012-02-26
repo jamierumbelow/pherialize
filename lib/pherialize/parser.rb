@@ -10,10 +10,20 @@ module Pherialize
     def initialize(lexer)
       @tokens = lexer.tokens
       @position = 0
+      @object = nil
     end
     
     def parse
-      
+      while true
+        if current.token == 'a'
+          @object = []
+        end
+
+        @position += 1
+        break unless current
+      end
+
+      @object
     end
     
     # -----------
